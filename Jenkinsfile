@@ -71,4 +71,15 @@ pipeline {
             cleanWs()
         }
     }
+   // post {
+   // success {
+   //     slackSend(color: 'good', message: "✅ Python Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}")
+  //  }
+  //  failure {
+  //      slackSend(color: 'danger', message: "❌ Python Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}")
+  //  }
+  //  always {
+ //       cleanWs()
+  //  }
+//}
 }
