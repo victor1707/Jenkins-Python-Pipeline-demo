@@ -1,0 +1,23 @@
+name: python workflow
+on:
+ push:
+jobs:
+  job1: 
+   runs-on: ubuntu-latest
+   steps:
+    - name: Checkout code 
+      uses: actions/checkout@v4 
+    - name: Setup python 3.9
+      uses: actions/setup-python@v5
+      with:
+       python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Set pythonPath 
+      run: echo "PYTHONPATH"=$GITHUB_WORKSPACE >> $GITHUB_ENV
+    - name: Python lint
+      run:  flake8 app.py tests/
+    - name: Run tests
+      run: pytest tests --cov=app --cov-report=xml
