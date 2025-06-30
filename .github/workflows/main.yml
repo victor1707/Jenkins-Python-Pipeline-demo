@@ -13,7 +13,7 @@ jobs:
       - name: setup python ${{ env.python_version }}
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ python_version }}
+          python-version: ${{ env.python_version }}
       - name: print a name
         run: |
          echo " hellow world"
