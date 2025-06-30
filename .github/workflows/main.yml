@@ -1,23 +1,16 @@
-name: python workflow
+---
+name: workflow variable
 on:
- push:
+  push:
+env:
+   python_version: 3.9
 jobs:
   job1:
-   runs-on: ubuntu-latest
-   steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Setup python 3.9
-      uses: actions/setup-python@v5
-      with:
-       python-version: '3.9'
-    - name: Install dependencies
-      run: |
-        pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Set pythonPath
-      run: echo "PYTHONPATH"=$GITHUB_WORKSPACE >> $GITHUB_ENV
-    - name: Run tests
-      env:
-       mycmd: ${{ vars.PYTHONCMD }}
-      run: $mycmd
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      - name: setup python ${{ env.python_version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ python_version }}
