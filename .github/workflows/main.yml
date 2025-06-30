@@ -15,10 +15,12 @@ jobs:
        python-version: ${{ env.PYTHON_VERSION }}
   job2:
    runs-on: ubuntu-latest
+   env:
+     MYJOB-PYTHON-VERSION: 3.8
    steps:
     - name: Checkout code 
       uses: actions/checkout@v4 
-    - name: Setup python ${{ env.PYTHON_VERSION }}
+    - name: Setup python ${{ env.MYJOB-PYTHON-VERSION }}
       uses: actions/setup-python@v5
       with:
-       python-version: ${{ env.PYTHON_VERSION }}
+       python-version: ${{ env.MYJOB-PYTHON-VERSION }}
