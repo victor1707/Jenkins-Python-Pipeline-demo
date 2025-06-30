@@ -1,42 +1,23 @@
-name: workflow variables
+name: python workflow
 on:
  push:
-env:
- PYTHON_VERSION: 3.9
 jobs:
   job1: 
    runs-on: ubuntu-latest
    steps:
     - name: Checkout code 
       uses: actions/checkout@v4 
-    - name: Setup python ${{ env.PYTHON_VERSION }}
+    - name: Setup python 3.9
       uses: actions/setup-python@v5
       with:
-       python-version: ${{ env.PYTHON_VERSION }}
-  job2:
-   runs-on: ubuntu-latest
-   env:
-     MYJOB-PYTHON-VERSION: 3.8
-   steps:
-    - name: Checkout code 
-      uses: actions/checkout@v4 
-    - name: Setup python ${{ env.MYJOB-PYTHON-VERSION }}
-      uses: actions/setup-python@v5
-      with:
-       python-version: ${{ env.MYJOB-PYTHON-VERSION }}
-  job3:
-   runs-on: ubuntu-latest
-   steps:
-    - name: Checkout code 
-      uses: actions/checkout@v4 
-    - name: Setup python 
+       python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Set pythonPath 
+      run: echo "PYTHONPATH"=$GITHUB_WORKSPACE >> $GITHUB_ENV
+    - name: Run tests
       env:
-       MYSTEP-PYTHON-VERSION: 3.11
-      uses: actions/setup-python@v5
-      with:
-       python-version: ${{ env.MYSTEP-PYTHON-VERSION }}
-    - name: Print a message
-      env: 
-       APPLICATION: python 
-      run: echo "The application installed is $APPLICATION"
-    
+       mycmd: ${{ vars.PYTHONCMD }}
+      run: $mycmd
