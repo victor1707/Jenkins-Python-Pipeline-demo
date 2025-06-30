@@ -9,16 +9,16 @@ jobs:
    steps:
     - name: Checkout code 
       uses: actions/checkout@v4 
-    - name: Setup python ${{ PYTHON_VERSION }}
+    - name: Setup python ${{ env.PYTHON_VERSION }}
       uses: actions/setup-python@v5
       with:
-       python-version: ${{ PYTHON_VERSION }}
+       python-version: ${{ env.PYTHON_VERSION }}
   job2:
    runs-on: ubuntu-latest
    steps:
     - name: Checkout code 
       uses: actions/checkout@v4 
-    - name: Setup python ${{ PYTHON_VERSION }}
+    - name: Setup python ${{ env.PYTHON_VERSION }}
       uses: actions/setup-python@v5
       with:
-       python-version: ${{ PYTHON_VERSION }}
+       python-version: ${{ env.PYTHON_VERSION }}
