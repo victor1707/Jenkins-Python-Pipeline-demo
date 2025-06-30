@@ -2,11 +2,11 @@ name: python workflow
 on:
  push:
 jobs:
-  job1: 
+  job1:
    runs-on: ubuntu-latest
    steps:
-    - name: Checkout code 
-      uses: actions/checkout@v4 
+    - name: Checkout code
+      uses: actions/checkout@v4
     - name: Setup python 3.9
       uses: actions/setup-python@v5
       with:
@@ -15,9 +15,7 @@ jobs:
       run: |
         pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Set pythonPath 
+    - name: Set pythonPath
       run: echo "PYTHONPATH"=$GITHUB_WORKSPACE >> $GITHUB_ENV
     - name: Run tests
-      env:
-       mycmd: ${{ vars.PYTHONCMD }}
-      run: $mycmd
+      run: pytest tests --cov=app --cov-report=xml
