@@ -24,3 +24,19 @@ jobs:
       uses: actions/setup-python@v5
       with:
        python-version: ${{ env.MYJOB-PYTHON-VERSION }}
+  job3:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Checkout code 
+      uses: actions/checkout@v4 
+    - name: Setup python 
+      env:
+       MYSTEP-PYTHON-VERSION: 3.11
+      uses: actions/setup-python@v5
+      with:
+       python-version: ${{ env.MYSTEP-PYTHON-VERSION }}
+    - name: Print a message
+      env: 
+       APPLICATION: python 
+      run: echo "The application installed is $APPLICATION"
+    
