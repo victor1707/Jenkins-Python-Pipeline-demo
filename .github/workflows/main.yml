@@ -15,6 +15,4 @@ jobs:
         with:
           python-version: ${{ env.python_version }}
       - name: print a name
-        run: |
-         echo " hellow world"
-         this is a ${{ env.python_version }}
+        run: echo $GITHUB_ACTOR
